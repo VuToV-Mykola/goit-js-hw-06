@@ -6,7 +6,7 @@
 [![📦 Size](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/VuToV-Mykola/goit-js-hw-05/main/assets/db/repo-size.json)](https://github.com/VuToV-Mykola/goit-js-hw-05)
 [![📄 License](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/VuToV-Mykola/goit-js-hw-05/main/assets/db/repo-license.json)](https://github.com/VuToV-Mykola/goit-js-hw-05/blob/main/LICENSE)
 
-## 📸 Скріншот проекту
+## 📸 Screenshot of the Project
 ![Project Screenshot](./assets/screenshot.png)
 <!-- END:AUTOGEN -->
 
@@ -20,321 +20,163 @@
 
 [SOLOLEARN](https://www.sololearn.com/certificates/CT-VJXN3HQH)
 
-# JavaScript Homework 05
+# JavaScript Homework 06
 
-## Task 1. User Names
+## About
+
+📌 GoIT Homework-JS #6: Object methods, Classes, Private properties - refactoring and building storage/string management systems.
+
+## Task 1. User Account
 
 **COMPLETE THIS TASK IN THE FILE `task-1.js`**
 
-Write an arrow function `getUserNames(users)` that accepts one parameter `users` — an array of user objects. The function should return an array of all user names (the `name` property) from the `users` array.
+Before being fired, a developer broke the source code for managing user accounts in our food delivery service. Perform refactoring of the `customer` object methods by adding the missing `this` when accessing object properties.
 
-Take the code below and insert it after declaring your function to check the correctness of its work. The console will display the results of its calls.
+Use this starter code and perform refactoring. After declaring the object, we added method calls. The console will display the results of their work. Please don't change anything there.
 
 ```javascript
-console.log(
-  getUserNames([
-    {
-      name: "Moore Hensley",
-      email: "moorehensley@indexia.com",
-      balance: 2811
-    },
-    {
-      name: "Sharlene Bush",
-      email: "sharlenebush@tubesys.com",
-      balance: 3821
-    },
-    {
-      name: "Ross Vazquez",
-      email: "rossvazquez@xinware.com",
-      balance: 3793
-    },
-    {
-      name: "Elma Head",
-      email: "elmahead@omatom.com",
-      balance: 2278
-    },
-    {
-      name: "Carey Barr",
-      email: "careybarr@nurali.com",
-      balance: 3951
-    },
-    {
-      name: "Blackburn Dotson",
-      email: "blackburndotson@furnigeer.com",
-      balance: 1498
-    },
-    {
-      name: "Sheree Anthony",
-      email: "shereeanthony@kog.com",
-      balance: 2764
-    },
-  ])
-); // ["Moore Hensley", "Sharlene Bush", "Ross Vazquez", "Elma Head", "Carey Barr", "Blackburn Dotson", "Sheree Anthony"]
+const customer = {
+  username: "Mango",
+  balance: 24000,
+  discount: 0.1,
+  orders: ["Burger", "Pizza", "Salad"],
+  // Change code below this line
+  getBalance() {
+    return balance;
+  },
+  getDiscount() {
+    return discount;
+  },
+  setDiscount(value) {
+    discount = value;
+  },
+  getOrders() {
+    return orders;
+  },
+  addOrder(cost, order) {
+    balance -= cost - cost * discount;
+    orders.push(order);
+  },
+  // Change code above this line
+};
+
+customer.setDiscount(0.15);
+console.log(customer.getDiscount()); // 0.15
+customer.addOrder(5000, "Steak");
+console.log(customer.getBalance()); // 19750
+console.log(customer.getOrders()); // ["Burger", "Pizza", "Salad", "Steak"]
 ```
 
 Leave this code for mentor verification.
 
 ### Mentor Review Criteria
 
-- Declared variable `getUserNames`
-- The variable `getUserNames` is assigned an arrow function with parameter `(users)`
-- The `map()` method is used to iterate over the `users` parameter
-- Calling the function with the specified array of users returns the array `["Moore Hensley", "Sharlene Bush", "Ross Vazquez", "Elma Head", "Carey Barr", "Blackburn Dotson", "Sheree Anthony"]`
-- Calling the function with random but valid arguments returns the correct value
+- Declared variable `customer`
+- The value of variable `customer` is an object with properties and methods
+- Calling `customer.getDiscount()` returns the current value of the `discount` property
+- Calling `customer.setDiscount(0.15)` updates the value of the `discount` property
+- Calling `customer.getBalance()` returns the current value of the `balance` property
+- Calling `customer.getOrders()` returns the current value of the `orders` property
+- Calling `customer.addOrder(5000, "Steak")` adds `"Steak"` to the array of values of the `orders` property and updates the balance
+- The `getBalance` method of the `customer` object uses `this`
+- The `getDiscount` method of the `customer` object uses `this`
+- The `setDiscount` method of the `customer` object uses `this`
+- The `getOrders` method of the `customer` object uses `this`
+- The `addOrder` method of the `customer` object uses `this`
 
-## Task 2. Users with Friend
+## Task 2. Storage
 
 **COMPLETE THIS TASK IN THE FILE `task-2.js`**
 
-Write an arrow function `getUsersWithFriend(users, friendName)` that accepts two parameters:
+Create a `Storage` class that will create objects for managing a warehouse of goods. The class expects only one argument — the initial array of goods, which is written to the created object in the private property `items`.
 
-- first parameter `users` — an array of user objects
-- second parameter `friendName` — the name of a friend to search for
+Declare the following class methods:
 
-The function should return an array of all users from the `users` array who have a friend with the name `friendName`. Each user's friends are stored in the `friends` property. If there are no users with such a friend, the function should return an empty array.
+- `getItems()` — returns an array of current goods in the private property `items`.
+- `addItem(newItem)` — accepts a new item `newItem` and adds it to the array of goods in the private property `items` of the object.
+- `removeItem(itemToRemove)` — accepts a string with the name of the item `itemToRemove` and removes it from the array of goods in the private property `items` of the object.
 
-**Tips:**
-
-- The `filter()` method can be used to create a new array with elements that satisfy a certain condition
-- Use the `includes()` method to check if the `friends` array contains `friendName`
-
-Take the code below and insert it after declaring your function to check the correctness of its work. The console will display the results of its calls.
+Take the code below with instance initialization and method calls and insert it after declaring the class to check the correctness of its work. The console will display the results of their work. Please don't change anything there.
 
 ```javascript
-const allUsers = [
-  {
-    name: "Moore Hensley",
-    friends: ["Sharron Pace"]
-  },
-  {
-    name: "Sharlene Bush",
-    friends: ["Briana Decker", "Sharron Pace"]
-  },
-  {
-    name: "Ross Vazquez",
-    friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"]
-  },
-  {
-    name: "Elma Head",
-    friends: ["Goldie Gentry", "Aisha Tran"]
-  },
-  {
-    name: "Carey Barr",
-    friends: ["Jordan Sampson", "Eddie Strong"]
-  },
-  {
-    name: "Blackburn Dotson",
-    friends: ["Jacklyn Lucas", "Linda Chapman"]
-  },
-  {
-    name: "Sheree Anthony",
-    friends: ["Goldie Gentry", "Briana Decker"]
-  }
-];
+const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
 
-console.log(getUsersWithFriend(allUsers, "Briana Decker")); 
-// [
-//   {
-//     name: "Sharlene Bush",
-//     friends: ["Briana Decker", "Sharron Pace"]
-//   },
-//   {
-//     name: "Sheree Anthony",
-//     friends: ["Goldie Gentry", "Briana Decker"]
-//   }
-// ]
+storage.addItem("Droid");
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
 
-console.log(getUsersWithFriend(allUsers, "Goldie Gentry"));
-// [
-//   {
-//     name: "Elma Head",
-//     friends: ["Goldie Gentry", "Aisha Tran"]
-//   },
-//   {
-//     name: "Sheree Anthony",
-//     friends: ["Goldie Gentry", "Briana Decker"]
-//   }
-// ]
+storage.removeItem("Prolonger");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
 
-console.log(getUsersWithFriend(allUsers, "Adrian Cross")); // []
+storage.removeItem("Scaner");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
 ```
 
 Leave this code for mentor verification.
 
 ### Mentor Review Criteria
 
-- Declared variable `getUsersWithFriend`
-- The variable `getUsersWithFriend` is assigned an arrow function with parameters `(users, friendName)`
-- The `filter()` method is used to iterate over the `users` parameter
-- If the value of the `friendName` parameter is the string `"Briana Decker"`, the function returns an array of user objects with names `Sharlene Bush` and `Sheree Anthony`
-- If the value of the `friendName` parameter is the string `"Goldie Gentry"`, the function returns an array of user objects with names `Elma Head` and `Sheree Anthony`
-- If the value of the `friendName` parameter is the string `"Adrian Cross"`, the function returns an empty array
-- Calling the function with random but valid arguments returns the correct value
+- Declared class `Storage`
+- Method `getItems` is declared in the `Storage` class
+- Method `addItem` is declared in the `Storage` class
+- Method `removeItem` is declared in the `Storage` class
+- Property `items` in the `Storage` class is declared as private
+- Method `getItems` returns the value of the private property `items` of the class instance that calls it
+- Method `addItem` changes the value of the private property `items` of the class instance that calls it
+- Method `removeItem` changes the value of the private property `items` of the class instance that calls it
+- As a result of calling `new Storage(["Nanitoids", "Prolonger", "Antigravitator"])`, the value of variable `storage` is an object
+- Object `storage` has no public property `items`
+- First call `storage.getItems()` immediately after instance initialization returns the array `["Nanitoids", "Prolonger", "Antigravitator"]`
+- Second call `storage.getItems()` after calling `storage.addItem("Droid")` returns the array `["Nanitoids", "Prolonger", "Antigravitator", "Droid"]`
+- Third call `storage.getItems()` after calling `storage.removeItem("Prolonger")` returns the array `["Nanitoids", "Antigravitator", "Droid"]`
+- Fourth call `storage.getItems()` after calling `storage.removeItem("Scaner")` returns the array `["Nanitoids", "Antigravitator", "Droid"]`
 
-## Task 3. Sorting by Number of Friends
+## Task 3. String Builder
 
 **COMPLETE THIS TASK IN THE FILE `task-3.js`**
 
-Write an arrow function `sortByDescendingFriendCount(users)` that accepts one parameter `users` — an array of user objects.
+Write a `StringBuilder` class that accepts one parameter `initialValue` — an arbitrary string, which is written to the private property `value` of the created object.
 
-The function should return an array of all users sorted in descending order by the number of their friends (the `friends` property).
+Declare the following class methods:
 
-Take the code below and insert it after declaring your function to check the correctness of its work. The console will display the results of its calls.
+- `getValue()` — returns the current value of the private property `value`.
+- `padEnd(str)` — receives parameter `str` (string) and adds it to the end of the value of the private property `value` of the object that calls this method.
+- `padStart(str)` — receives parameter `str` (string) and adds it to the beginning of the value of the private property `value` of the object that calls this method.
+- `padBoth(str)` — receives parameter `str` (string) and adds it to the beginning and end of the value of the private property `value` of the object that calls this method.
+
+Take the code below with instance initialization and method calls and insert it after declaring the class to check the correctness of its work. The console will display the results of their work. Please don't change anything there.
 
 ```javascript
-console.log(
-  sortByDescendingFriendCount([
-    {
-      name: "Moore Hensley",
-      friends: ["Sharron Pace"],
-      gender: "male"
-    },
-    {
-      name: "Sharlene Bush",
-      friends: ["Briana Decker", "Sharron Pace"],
-      gender: "female"
-    },
-    {
-      name: "Ross Vazquez",
-      friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
-      gender: "male"
-    },
-    {
-      name: "Elma Head",
-      friends: ["Goldie Gentry", "Aisha Tran"],
-      gender: "female"
-    },
-    {
-      name: "Carey Barr",
-      friends: ["Jordan Sampson", "Eddie Strong"],
-      gender: "male"
-    },
-    {
-      name: "Blackburn Dotson",
-      friends: ["Jacklyn Lucas", "Linda Chapman"],
-      gender: "male"
-    },
-    {
-      name: "Sheree Anthony",
-      friends: ["Goldie Gentry", "Briana Decker"],
-      gender: "female"
-    }
-  ])
-);
-// [
-//   {
-//     name: "Ross Vazquez",
-//     friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
-//     gender: "male"
-//   },
-//   {
-//     name: "Sharlene Bush",
-//     friends: ["Briana Decker", "Sharron Pace"],
-//     gender: "female"
-//   },
-//   {
-//     name: "Elma Head",
-//     friends: ["Goldie Gentry", "Aisha Tran"],
-//     gender: "female"
-//   },
-//   {
-//     name: "Carey Barr",
-//     friends: ["Jordan Sampson", "Eddie Strong"],
-//     gender: "male"
-//   },
-//   {
-//     name: "Blackburn Dotson",
-//     friends: ["Jacklyn Lucas", "Linda Chapman"],
-//     gender: "male"
-//   },
-//   {
-//     name: "Sheree Anthony",
-//     friends: ["Goldie Gentry", "Briana Decker"],
-//     gender: "female"
-//   },
-//   {
-//     name: "Moore Hensley",
-//     friends: ["Sharron Pace"],
-//     gender: "male"
-//   }
-// ]
+const builder = new StringBuilder(".");
+console.log(builder.getValue()); // "."
+
+builder.padStart("^");
+console.log(builder.getValue()); // "^."
+
+builder.padEnd("^");
+console.log(builder.getValue()); // "^.^"
+
+builder.padBoth("=");
+console.log(builder.getValue()); // "=^.^="
 ```
 
 Leave this code for mentor verification.
 
 ### Mentor Review Criteria
 
-- Declared variable `sortByDescendingFriendCount`
-- The variable `sortByDescendingFriendCount` is assigned an arrow function with parameter `(users)`
-- The `toSorted()` method is used to iterate over the `users` parameter
-- Calling the function with the specified `users` array returns a new array of users sorted in descending order by the number of their friends
-- Calling the function with random but valid arguments returns the correct value
-
-## Task 4. Total Balance by Gender
-
-**COMPLETE THIS TASK IN THE FILE `task-4.js`**
-
-Write an arrow function `getTotalBalanceByGender(users, gender)` that accepts two parameters:
-
-- first parameter `users` — an array of user objects
-- second parameter `gender` — a string storing the gender
-
-The function should use method chaining and return the total balance of users (the `balance` property) whose gender (the `gender` property) matches the value of the `gender` parameter.
-
-Take the code below and insert it after declaring your function to check the correctness of its work. The console will display the results of its calls.
-
-```javascript
-const clients = [
-  {
-    name: "Moore Hensley",
-    gender: "male",
-    balance: 2811
-  },
-  {
-    name: "Sharlene Bush",
-    gender: "female",
-    balance: 3821
-  },
-  {
-    name: "Ross Vazquez",
-    gender: "male",
-    balance: 3793
-  },
-  {
-    name: "Elma Head",
-    gender: "female",
-    balance: 2278
-  },
-  {
-    name: "Carey Barr",
-    gender: "male",
-    balance: 3951
-  },
-  {
-    name: "Blackburn Dotson",
-    gender: "male",
-    balance: 1498
-  },
-  {
-    name: "Sheree Anthony",
-    gender: "female",
-    balance: 2764
-  }
-];
-
-console.log(getTotalBalanceByGender(clients, "male")); // 12053
-
-console.log(getTotalBalanceByGender(clients, "female")); // 8863
-```
-
-Leave this code for mentor verification.
-
-### Mentor Review Criteria
-
-- Declared variable `getTotalBalanceByGender`
-- The variable `getTotalBalanceByGender` is assigned an arrow function with parameters `(users, gender)`
-- Method chaining is used in the function body in the correct order
-- The value of the `users` parameter is not modified
-- If the value of the `gender` parameter is the string `"male"`, the function returns the number `12053`
-- If the value of the `gender` parameter is the string `"female"`, the function returns the number `8863`
-- Calling the function with random but valid arguments returns the correct value
+- Declared class `StringBuilder`
+- Property `value` in the `StringBuilder` class is declared as private
+- Method `getValue` is declared in the `StringBuilder` class
+- Method `getValue` returns the value of the private property `value` of the class instance that calls it
+- Method `padEnd` is declared in the `StringBuilder` class
+- Method `padEnd` changes the value of the private property `value` of the class instance that calls it
+- Method `padStart` is declared in the `StringBuilder` class
+- Method `padStart` changes the private property `value` of the class instance that calls it
+- Method `padBoth` is declared in the `StringBuilder` class
+- Method `padBoth` changes the value of the private property `value` of the class instance that calls it
+- As a result of calling `new StringBuilder(".")`, the value of private variable `builder` is an object
+- Object `builder` does not contain a public property `value`
+- First call `builder.getValue()` immediately after instance initialization returns the string `.`
+- Second call `builder.getValue()` after calling `builder.padStart("^")` returns the string `^.`
+- Third call `builder.getValue()` after calling `builder.padEnd("^")` returns the string `^.^`
+- Fourth call `builder.getValue()` after calling `builder.padBoth("=")` returns the string `=^.^=`
