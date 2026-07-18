@@ -5,9 +5,6 @@
 [![⭐ Stars](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/VuToV-Mykola/goit-js-hw-06/main/assets/db/likes-badge.json)](https://github.com/VuToV-Mykola/goit-js-hw-06/actions/workflows/screenshot-and-visitor.yaml)
 [![📦 Size](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/VuToV-Mykola/goit-js-hw-06/main/assets/db/repo-size.json)](https://github.com/VuToV-Mykola/goit-js-hw-06)
 [![📄 License](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/VuToV-Mykola/goit-js-hw-06/main/assets/db/repo-license.json)](https://github.com/VuToV-Mykola/goit-js-hw-06/blob/main/LICENSE)
-
-## 📸 Скріншот проекту
-![Project Screenshot](./assets/screenshot.png)
 <!-- END:AUTOGEN -->
 
 ## My Achievements
